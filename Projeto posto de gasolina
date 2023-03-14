@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+float calcularvalor(int tipo,float litros,float valor){
+float valordes;
+float totaldes,quantA,quantG,novovalor;
+if(tipo==1 && litros<=20){
+   novovalor=valor-0.03*valor;
+   totaldes=novovalor*litros;
+printf("\nvoce obteve 3%% de desconto");
+return totaldes;
+}
+
+else if(tipo==1 && litros>20){
+novovalor=valor-0.05*valor;
+   totaldes=novovalor*litros;
+printf("\nvoce obteve 5%% de desconto");
+return totaldes;
+}
+
+else if(tipo==2 && litros<=20){
+novovalor=valor-0.04*valor;
+   totaldes=novovalor*litros;
+printf("\nvoce obteve 4%% de desconto");
+return totaldes;
+}
+
+else if(tipo==2 && litros>20){
+novovalor=valor-0.06*valor;
+   totaldes=novovalor*litros;
+quantG++;
+printf("\nvoce obteve 6%% de desconto");
+return totaldes;
+
+}
+}
+
+
+int main(int argc, char *argv[]) {
+
+
+float litros,valor,total,desconto,totaldes,total2,novovalor,totalarrecadado,media,por,cont=0,quantA=0,quantG=0,maiorvalor=0,totallitros=0,medialitros,quantacima=0,valoralcool=0,valorgas=0;
+int tipo;
+
+printf("Digite o valor do litro do alcool : ");
+scanf("%f",&valoralcool);
+
+printf("Digite o valor do litro da gasolina : ");
+scanf("%f",&valorgas);
+do{
+printf("\n\n[1] ALCOOL \n[2] GASOLINA");
+printf("\nQual tipo de combustivel deseja ?");
+scanf("%i",&tipo);
+
+if(tipo==1 || tipo==2){
+
+
+printf("\nQuantos litros deseja abastecer ?");
+scanf("%f",&litros);
+
+
+
+totallitros+=litros;
+    valor=valoralcool;
+    valor=valorgas;
+    totaldes=calcularvalor(tipo,litros,valor);
+printf("\nO valor total com desconto = R$%.2f",totaldes);
+if(tipo==1){
+quantA=quantA+1;
+}
+   
+   
+if(totaldes>=maiorvalor){
+maiorvalor=totaldes;
+}
+cont++;
+totalarrecadado+=totaldes;
+     }
+     medialitros=totallitros/cont;  
+     if(litros>medialitros){
+      quantacima++;
+}
+ 
+
+}while(tipo==1 || tipo==2);
+
+    media=totalarrecadado/cont;
+
+printf("\nO total de valor arrecadado = R$%.2f",totalarrecadado);
+printf("\nA media de gasolina vendido = R$%.2f",media);
+   
+   
+    if(quantA>quantG){
+    printf("\n O combustivel menos vendido foi gasolina com %.0f vendas",quantG);
+}
+else if(quantA<quantG){
+printf("\nO combustivel menos vendido foi o alcool com %.0f vendas",quantA);
+}
+else{
+printf("\nAlcool e gasolina foram vendidos iguais ");
+}
+
+por=quantA/cont*100;
+
+printf("\nA porcentagem da venda de alcool e de %.1f%%",por);
+printf("\nO maior valor e R$%.2f",maiorvalor);
+printf("\nA media de litros = %.1f litros",medialitros);
+printf("\nO numero de carros acima de media de litros foi %.0f carros",quantacima);
+
+return 0;
+}
+
+
